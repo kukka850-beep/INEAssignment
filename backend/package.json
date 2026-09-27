@@ -1,0 +1,27 @@
+{
+  "name": "ine-price-tracker-backend",
+  "version": "1.0.0",
+  "description": "Scheduled scraper + API for the INE price tracker assignment",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon --watch src src/server.js",
+    "test": "node --test test/scraper.test.js",
+    "scrape:headed": "node src/scraper/runOnce.js",
+    "scrape:once": "node src/scraper/runOnce.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.4",
+    "cheerio": "^1.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "json2csv": "^6.0.0-alpha.2",
+    "node-fetch": "^2.7.0",
+    "playwright": "^1.47.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
