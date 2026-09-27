@@ -1,4 +1,3 @@
-
 module.exports = {
   search: {
     // The store exposes a real search/filter API — use it directly.
@@ -20,8 +19,8 @@ module.exports = {
     optionLabelAttr: 'data-variant',
     // DOM: the offer panel unlock button
     unlockButton: 'button.ctl-main, [aria-label="Check today\'s price"]',
-    // The visible sale amount uses a direct div or b; hidden decoy amounts are spans.
-    price: '.offer-row > div, .offer-row > b',
+    // The visible sale amount changes tag; hidden decoy amounts are spans.
+    price: '.offer-row > div, .offer-row > b, .offer-row > strong',
     // DOM: stock badge
     stock: '.avail-pill',
     // DOM: marker that the offer panel finished loading after unlock
@@ -37,7 +36,6 @@ module.exports = {
     '.offer-panel',
     '.opt-chip, .variant-btn, [data-testid="variant-btn"], .variant-pill, button[data-variant]',
     '.avail-pill',
-    '.offer-row > div, .offer-row > b',
+    '.offer-row > div, .offer-row > b, .offer-row > strong',
   ],
 };
-
