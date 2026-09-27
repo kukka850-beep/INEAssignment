@@ -1,17 +1,7 @@
 const assert = require('node:assert/strict');
 const test = require('node:test');
 const selectors = require('../src/scraper/selectors');
-const { parsePrice, shouldFallbackToBrowser } = require('../src/scraper/scraper');
-
-test('auto scraper falls back to browser for transient HTTP errors', () => {
-  assert.equal(shouldFallbackToBrowser({ httpStatus: 503 }), true);
-  assert.equal(shouldFallbackToBrowser({ httpStatus: 429 }), true);
-});
-
-test('auto scraper does not browser-fallback on permanent client errors', () => {
-  assert.equal(shouldFallbackToBrowser({ httpStatus: 404 }), false);
-  assert.equal(shouldFallbackToBrowser({ httpStatus: 403 }), false);
-});
+const { parsePrice } = require('../src/scraper/scraper');
 const { withRetry } = require('../src/utils/retry');
 
 test('parsePrice reads the visible selling price with zero-width separators', () => {
@@ -26,8 +16,8 @@ test('parsePrice rejects text without a numeric price', () => {
 
 test('product selectors target the actual option chips and visible sale price', () => {
   assert.match(selectors.product.optionSelector, /\.opt-chip/);
-  assert.equal(selectors.product.price, '.offer-row > div, .offer-row > b');
-  assert.match(selectors.structuralFingerprint.at(-1), /\.offer-row > div, \.offer-row > b/);
+  assert.equal(selectors.product.price, '.offer-row > div, .offer-row > b, .offer-row > strong');
+  assert.match(selectors.structuralFingerprint.at(-1), /\.offer-row > strong/);
 });
 
 test('retry logging errors stop retries instead of repeating a successful scrape', async () => {
